@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">How To Use Dagger</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="year">Year: <b>%s</b></string>
+    <string name="company">Company: <b>%s</b></string>
+</resources>
