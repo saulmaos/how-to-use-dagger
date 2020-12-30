@@ -1,4 +1,4 @@
-# Simple To-Do app example
+# Simple Dagger app example
 Una simple app para mostrar el uso de Dagger 2
 
 En este repositorio encontrarás los ejemplos relacionados con el curso de Dagger 2 en Android
