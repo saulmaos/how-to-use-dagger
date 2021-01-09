@@ -27,7 +27,7 @@ class DetailFragment private constructor(): Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         createViewModel()
-        viewModel.language.observe(this, Observer {
+        viewModel.language.observe(viewLifecycleOwner, Observer {
             tvLanguage.text = it.language
             tvDescription.text = it.desc
             tvYear.text = getString(R.string.year, it.year)
