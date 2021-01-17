@@ -16,19 +16,18 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
-
-    // In this case @Inject is used to tell Dagger that repository must be injected
+    // In this case @Inject is used to tell Dagger that MainViewModel must be injected
     @Inject
-    lateinit var repository: Repository
+    lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // we're are requesting the dependencies
-        (application as MyApp).applicationComponent.inject(this)
+        (application as MyApp).applicationComponent
+                .getMainComponent()
+                .create(this)
+                .inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        createViewModel()
 
         viewModel.language.observe(this, Observer {
             tvLanguage.text = it.language
@@ -41,10 +40,5 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.onLanguageRequest()
-    }
-
-    private fun createViewModel() {
-        val factory = ViewModelProviderFactory(repository)
-        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
     }
 }
