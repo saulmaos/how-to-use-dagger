@@ -1,6 +1,5 @@
 package com.recodigo.howtousedagger.ui.mainActivity.di
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.recodigo.howtousedagger.data.repository.Repository
 import com.recodigo.howtousedagger.ui.mainActivity.MainActivity
