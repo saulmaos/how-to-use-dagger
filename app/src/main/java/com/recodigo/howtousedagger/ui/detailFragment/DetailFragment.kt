@@ -18,11 +18,12 @@ import javax.inject.Inject
 
 class DetailFragment private constructor(): Fragment() {
 
-    private lateinit var viewModel: DetailViewModel
-
-    // In this case @Inject is used to tell Dagger that repository must be injected
-    @Inject
-    lateinit var repository: Repository
+    private val viewModel: DetailViewModel by lazy {
+        val factory = (requireActivity() as DetailActivity)
+                .detailComponent
+                .getDetailViewModelFactory()
+        ViewModelProvider(this, factory).get(DetailViewModel::class.java)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,7 +41,6 @@ class DetailFragment private constructor(): Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        createViewModel()
         viewModel.language.observe(viewLifecycleOwner, Observer {
             tvLanguage.text = it.language
             tvDescription.text = it.desc
@@ -49,11 +49,6 @@ class DetailFragment private constructor(): Fragment() {
         })
 
         viewModel.onLanguageRequest()
-    }
-
-    private fun createViewModel() {
-        val factory = ViewModelProviderFactory(repository)
-        viewModel = ViewModelProvider(this, factory).get(DetailViewModel::class.java)
     }
 
     companion object {

@@ -1,6 +1,7 @@
 package com.recodigo.howtousedagger.di
 
 import android.content.Context
+import com.recodigo.howtousedagger.ui.detailActivity.di.DetailComponent
 import com.recodigo.howtousedagger.ui.detailFragment.DetailFragment
 import com.recodigo.howtousedagger.ui.mainActivity.MainActivity
 import com.recodigo.howtousedagger.ui.mainActivity.di.MainComponent
@@ -25,6 +26,8 @@ interface ApplicationComponent {
 
     // we're requesting access to MainComponent
     fun getMainComponent(): MainComponent.Factory
+
+    fun getDetailComponent(): DetailComponent.Factory
 
     // method create() is the one we'll use to create an instance of ApplicationComponent
     // Context is needed to create instances of MyDatabase

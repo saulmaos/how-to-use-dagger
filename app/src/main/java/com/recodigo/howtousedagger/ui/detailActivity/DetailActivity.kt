@@ -2,11 +2,20 @@ package com.recodigo.howtousedagger.ui.detailActivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.recodigo.howtousedagger.MyApp
 import com.recodigo.howtousedagger.R
+import com.recodigo.howtousedagger.ui.detailActivity.di.DetailComponent
 import com.recodigo.howtousedagger.ui.detailFragment.DetailFragment
 
 class DetailActivity : AppCompatActivity() {
+    lateinit var detailComponent: DetailComponent
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        detailComponent = (application as MyApp)
+                .applicationComponent
+                .getDetailComponent()
+                .create()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
